@@ -1,10 +1,29 @@
 <h1 class="mt-4">Customers</h1>
 <ol class="breadcrumb mb-4">
-  <li class="breadcrumb-item active">Cadastro</li>
+  <li class="breadcrumb-item active">Sign up</li>
 </ol>
+<div class="row">
+  <div class="col-md-2">
+    <button class="btn btn-primary" [routerLink]="['/customers-list']">
+      <i class="fa fa-arrow-left"></i> Back
+    </button>
+  </div>
+</div>
+<br />
 <div class="container">
   <form #customerForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
+     <div class="col-md-12">
+       <div class="alert alert-success" role="alert" *ngIf="success">
+         Sucesso!
+        </div>
+       <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+         {{ error }}
+       </div>
+     </div>
+    </div>
+
+    <div class="row" *ngIf="customer.id">
       <div class="col-md-6">
         <div class="form-group">
           <label>ID:</label>
@@ -15,7 +34,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Registration Date:</label>
-          <input type="date" class="form-control" name="dateRegistration"
+          <input type="text" class="form-control" name="dateRegistration"
                  [ngModel]="customer.dateRegistration" disabled/>
         </div>
       </div>
@@ -38,7 +57,7 @@
       <div class="row">
         <div class="col-md-2">
           <button type="submit" class="btn btn-success">
-            <i class="fa fa-save"></i> Salvar
+            <i class="fa fa-save"></i> Save
           </button>
         </div>
       </div>
